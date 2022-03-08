@@ -19,5 +19,17 @@
   max-width: 800px;
   height: 80%;
   max-height: 600px;
+  gap: 10px;
+  padding: 20px;
+}
+
+.display {
+  flex: 1;
+  border: 2px solid black;
+}
+
+.buttons {
+  flex: 4;
+  border: 2px solid black;
 }
 
