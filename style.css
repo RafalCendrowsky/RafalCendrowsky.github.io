@@ -30,6 +30,17 @@
 
 .buttons {
   flex: 4;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-auto-rows: 20%;
   border: 2px solid black;
 }
 
+.button {
+  flex: 1;
+  min-width: 60px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
