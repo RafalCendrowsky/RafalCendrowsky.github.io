@@ -12,7 +12,7 @@ body {
   min-height: 600px;
 }
 
-.calculator {  
+.calculator {
   display: flex;
   flex-direction: column;
   background: #202030;
@@ -31,7 +31,7 @@ body {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 3%;
   padding: 10px;
-  
+
 }
 
 button {
@@ -54,37 +54,36 @@ button:active {
   background: #161622;
 }
 
-#clear:hover {
+#all-clear {
+    background: #a00;
+}
+
+#all-clear:hover {
   background-color: #d00;
 }
 
-#equals:hover {
-  background-color: #0b0;
-}
-
-#clear:active {
+#all-clear:active {
   background-color: #a00;
-}
-
-#equals:active {
-  background-color: #090;
-}
-
-#clear {
-  background: #a00;
 }
 
 #equals {
   background: #080;
 }
 
+#equals:hover {
+    background-color: #0b0;
+  }
+
+#equals:active {
+    background-color: #090;
+  }
 
 @media (max-width: 600px) and (orientation:portrait) {
   .container {
     height: 100vh;
     min-height: 350px;
   }
-  
+
   .calculator {
     height: 100vh;
     width: 100vw;
@@ -92,11 +91,11 @@ button:active {
     gap: 4%;
     min-width: 250px;
   }
-  
+
   .display {
     flex-grow: 2;
   }
-  
+
   .buttons {
     flex-grow: 1;
   }
@@ -107,18 +106,18 @@ button:active {
     height: 100vh;
     min-height: 100px;
   }
-  
+
   .calculator {
     height: 100vh;
     width: 100vw;
     padding: 5vh 5vw;
     gap: 3%;
   }
-  
+
   .display {
     flex: 2;
   }
-  
+
   .buttons {
     flex: 5;
     padding: 1% 5%;
@@ -138,7 +137,7 @@ button:active {
     gap: 20px;
     padding: 35px;
   }
-  
+
   .buttons {
     flex: 3;
   }
