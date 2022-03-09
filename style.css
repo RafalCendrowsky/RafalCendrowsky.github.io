@@ -34,10 +34,11 @@ body {
   
 }
 
-.button {
+button {
   background: #161622;
   color: #c6c6c6;
   border-radius: 15%;
+  border: 0px;
   font-size: 170%;
   display: flex;
   align-items: center;
@@ -45,8 +46,12 @@ body {
   user-select: none;
 }
 
-.button:hover {
-  background-color: #63638f;
+button:hover {
+  background-color: #464658;
+}
+
+button:active {
+  background: #161622;
 }
 
 #clear:hover {
@@ -55,6 +60,14 @@ body {
 
 #equals:hover {
   background-color: #0b0;
+}
+
+#clear:active {
+  background-color: #a00;
+}
+
+#equals:active {
+  background-color: #090;
 }
 
 #clear {

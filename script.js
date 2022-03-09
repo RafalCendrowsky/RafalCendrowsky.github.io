@@ -32,5 +32,3 @@ function evalFunction(a, b, operator) {
             return a/b;
     }
 }
-
-console.log(evalEquation(["(", 12, "÷", 16, ")"]));
