@@ -1,14 +1,36 @@
-function evalEquation(equation) {
+function evalEquation(equationArr) {
     var operatorStack = [];
     var operandStack = [];
-    for (index in equation) {
-        var char = index.charAt(index);
-        if (char.matches("[0-9]+(.[0-9]+)?")) {
-            operandStack.push(char);
-        } else if (char !== "(") {
-            operatorStack.push(char);
+    equationArr.push(")");
+    equationArr.forEach(element => {
+        if (typeof element === "number") {
+            operandStack.push(element);
+        } else if (element === ")") {
+            let operator = operatorStack.pop();
+            let b = operandStack.pop();
+            let a = operandStack.pop();
+            operandStack.push(evalFunction(a, b, operator));
+        } else if (element !== "(") {
+            operatorStack.push(element);
         }
+    });
+    return operandStack[0];
+}
+
+function evalFunction(a, b, operator) {
+    if(a === undefined) {
+        return b;
+    }
+    switch (operator) {
+        case "+":
+            return a+b;
+        case "-":
+            return a-b;
+        case "×":
+            return a*b;
+        case "÷":
+            return a/b;
     }
 }
 
-evalEquation("hello, there");
+console.log(evalEquation(["(", 12, "÷", 16, ")"]));
