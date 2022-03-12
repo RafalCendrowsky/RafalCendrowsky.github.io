@@ -21,6 +21,7 @@ body {
 
 .display {
   flex-grow: 1;
+  font-size: 170%;
   border-radius: 15px;;
   border: 3px solid rgba(120, 120, 135, 0.25);
   background: #c4b6d3;

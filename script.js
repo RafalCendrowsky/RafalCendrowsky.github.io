@@ -1,34 +1,53 @@
-function evalEquation(equationArr) {
-    var operatorStack = [];
-    var operandStack = [];
-    equationArr.push(")");
-    equationArr.forEach(element => {
-        if (typeof element === "number") {
-            operandStack.push(element);
-        } else if (element === ")") {
-            let operator = operatorStack.pop();
-            let b = operandStack.pop();
-            let a = operandStack.pop();
-            operandStack.push(evalFunction(a, b, operator));
-        } else if (element !== "(") {
-            operatorStack.push(element);
-        }
-    });
-    return operandStack[0];
-}
-
-function evalFunction(a, b, operator) {
-    if(a === undefined) {
-        return b;
-    }
-    switch (operator) {
+function evalFunction(equationArr) {
+    let a = equationArr[0];
+    let b = equationArr[2];
+    switch(equationArr[1]) {
         case "+":
             return a+b;
         case "-":
             return a-b;
-        case "×":
-            return a*b;
         case "÷":
             return a/b;
+        case "×":
+            return a*b;
     }
 }
+var numberBuffer = "0";
+var equationArr = [numberBuffer];
+
+function display() {
+    document.querySelector(".display").textContent = equationArr.join("");
+}
+
+document.querySelectorAll("button[data-type=\"num\"]").forEach(elem => {
+    elem.addEventListener("click", e => {
+        if (numberBuffer === "0") numberBuffer = "";
+        numberBuffer = numberBuffer.concat(e.target.textContent);
+        equationArr[equationArr.length - 1] = numberBuffer;
+        console.log(equationArr);
+        display();
+   });
+});
+
+document.querySelectorAll("button[data-type=\"oprt\"]").forEach(elem => {
+    elem.addEventListener("click", e => {
+        if(numberBuffer !== "") equationArr[equationArr.length - 1] = parseFloat(numberBuffer)
+        if(equationArr.length >= 3) {
+            equationArr = [evalFunction(equationArr)];
+        }
+        numberBuffer = "";
+        equationArr.push(e.target.textContent);
+        equationArr.push(numberBuffer);
+        console.log(equationArr);
+        display();
+   });
+});
+
+document.querySelector("#equals").addEventListener("click", e => {
+    equationArr[equationArr.length - 1] = parseFloat(numberBuffer);
+    numberBuffer = "";
+    equationArr = [evalFunction(equationArr)];
+    equationArr.concat(numberBuffer);
+    console.log(equationArr);
+    display();
+});
