@@ -56,3 +56,16 @@ document.querySelector("#equals").addEventListener("click", e => {
     updateUpper();
     updateLower(equationArr[0]);
 });
+
+document.querySelector("#all-clear").addEventListener("click", e => {
+    numberBuffer = "0";
+    equationArr = [numberBuffer];
+    updateLower(numberBuffer);
+    updateUpper();
+});
+
+document.querySelector("#clear").addEventListener("click", e => {
+    numberBuffer = numberBuffer.substring(0, numberBuffer.length - 1);
+    equationArr[equationArr.length - 1] = numberBuffer;
+    updateLower(numberBuffer);
+});
