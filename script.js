@@ -14,6 +14,7 @@ function evalFunction(equationArr) {
 }
 var numberBuffer = "0";
 var equationArr = [numberBuffer];
+var hasDot = false;
 
 function updateLower(text) {
     document.querySelector(".lower").textContent = text;
@@ -41,6 +42,7 @@ document.querySelectorAll("button[data-type=\"oprt\"]").forEach(elem => {
             equationArr = [evalFunction(equationArr)];
         }
         numberBuffer = "";
+        hasDot = false;
         equationArr.push(e.target.textContent);
         equationArr.push(numberBuffer);
         updateUpper(equationArr[0], e.target.textContent);
@@ -53,6 +55,7 @@ document.querySelector("#equals").addEventListener("click", e => {
     numberBuffer = "";
     equationArr = [evalFunction(equationArr)];
     equationArr.concat(numberBuffer);
+    hasDot = false;
     updateUpper();
     updateLower(equationArr[0]);
 });
@@ -60,12 +63,22 @@ document.querySelector("#equals").addEventListener("click", e => {
 document.querySelector("#all-clear").addEventListener("click", e => {
     numberBuffer = "0";
     equationArr = [numberBuffer];
+    hasDot = false;
     updateLower(numberBuffer);
     updateUpper();
 });
 
 document.querySelector("#clear").addEventListener("click", e => {
+    if (numberBuffer.charAt(numberBuffer.length - 1) == ".") hasDot = false;
     numberBuffer = numberBuffer.substring(0, numberBuffer.length - 1);
     equationArr[equationArr.length - 1] = numberBuffer;
     updateLower(numberBuffer);
+});
+
+document.querySelector("#dot").addEventListener("click", e => {
+    if(!hasDot) {
+        numberBuffer = numberBuffer.concat(".");
+        hasDot = true;
+        updateLower(numberBuffer);
+    }
 });
