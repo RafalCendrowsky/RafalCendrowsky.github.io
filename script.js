@@ -15,9 +15,12 @@ function evalFunction(equationArr) {
 var numberBuffer = "0";
 var equationArr = [numberBuffer];
 
-function display() {
-    document.querySelector(".lower").textContent = equationArr.join("");
-    document.querySelector(".upper").textContent = equationArr.join("");
+function updateLower(text) {
+    document.querySelector(".lower").textContent = text;
+}
+
+function updateUpper(text = "", operator = "") {
+    document.querySelector(".upper").textContent = text + operator;
 }
 
 document.querySelectorAll("button[data-type=\"num\"]").forEach(elem => {
@@ -27,8 +30,7 @@ document.querySelectorAll("button[data-type=\"num\"]").forEach(elem => {
             numberBuffer = numberBuffer.concat(e.target.textContent);
         }
         equationArr[equationArr.length - 1] = numberBuffer;
-        console.log(equationArr);
-        display();
+        updateLower(numberBuffer);
    });
 });
 
@@ -41,8 +43,8 @@ document.querySelectorAll("button[data-type=\"oprt\"]").forEach(elem => {
         numberBuffer = "";
         equationArr.push(e.target.textContent);
         equationArr.push(numberBuffer);
-        console.log(equationArr);
-        display();
+        updateUpper(equationArr[0], e.target.textContent);
+        updateLower(numberBuffer);
    });
 });
 
@@ -51,6 +53,6 @@ document.querySelector("#equals").addEventListener("click", e => {
     numberBuffer = "";
     equationArr = [evalFunction(equationArr)];
     equationArr.concat(numberBuffer);
-    console.log(equationArr);
-    display();
+    updateUpper();
+    updateLower(equationArr[0]);
 });
