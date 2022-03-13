@@ -16,13 +16,16 @@ var numberBuffer = "0";
 var equationArr = [numberBuffer];
 
 function display() {
-    document.querySelector(".display").textContent = equationArr.join("");
+    document.querySelector(".lower").textContent = equationArr.join("");
+    document.querySelector(".upper").textContent = equationArr.join("");
 }
 
 document.querySelectorAll("button[data-type=\"num\"]").forEach(elem => {
     elem.addEventListener("click", e => {
         if (numberBuffer === "0") numberBuffer = "";
-        numberBuffer = numberBuffer.concat(e.target.textContent);
+        if(numberBuffer.length < 15) {
+            numberBuffer = numberBuffer.concat(e.target.textContent);
+        }
         equationArr[equationArr.length - 1] = numberBuffer;
         console.log(equationArr);
         display();

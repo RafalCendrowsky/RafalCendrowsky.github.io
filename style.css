@@ -20,11 +20,25 @@ body {
 }
 
 .display {
-  flex-grow: 1;
   font-size: 170%;
-  border-radius: 15px;;
+  border-radius: 15px;
+  box-sizing: border-box;
   border: 3px solid rgba(120, 120, 135, 0.25);
   background: #c4b6d3;
+  padding: 3% 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lower {
+  text-align: right;
+}
+
+.upper {
+  text-align: left;
+  color: #668;
+  font-size: 70%;
 }
 
 .buttons {
@@ -45,6 +59,79 @@ button {
   align-items: center;
   justify-content: center;
   user-select: none;
+}
+
+@media (max-width: 600px) and (orientation:portrait) {
+  .container {
+    height: 100vh;
+    min-height: 350px;
+  }
+
+  .calculator {
+    height: 100vh;
+    width: 100vw;
+    padding: 6vh 6vw;
+    gap: 4%;
+    min-width: 250px;
+  }
+
+  .display {
+    flex-grow: 1;
+  }
+
+  .buttons {
+    flex-grow: 2;
+  }
+}
+
+@media (max-height: 600px) and (orientation:landscape) {
+  .container {
+    height: 100vh;
+    min-height: 100px;
+  }
+
+  .calculator {
+    height: 100vh;
+    width: 100vw;
+    padding: 5vh 5vw;
+    gap: 3%;
+  }
+
+  .display {
+    flex: 1;
+  }
+
+  .buttons {
+    flex: 5;
+    padding: 1% 5%;
+    grid-gap: 4% 4%;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  button {
+    font-size: 150%;
+  }
+}
+
+@media (min-width: 601px) and (min-height: 601px){
+  .calculator {
+    box-shadow: 5px 20px 50px rgba(5,5,20,0.7);
+    border-radius: 8%;
+    min-width: 320px;
+    height: 80%;
+    max-height: 700px;
+    aspect-ratio: 0.7;
+    gap: 20px;
+    padding: 35px;
+  }
+  
+  .display {
+    flex: 1;
+  }
+
+  .buttons {
+    flex: 3;
+  }
 }
 
 button:hover {
@@ -73,73 +160,8 @@ button:active {
 
 #equals:hover {
     background-color: #0b0;
-  }
+}
 
 #equals:active {
     background-color: #090;
-  }
-
-@media (max-width: 600px) and (orientation:portrait) {
-  .container {
-    height: 100vh;
-    min-height: 350px;
-  }
-
-  .calculator {
-    height: 100vh;
-    width: 100vw;
-    padding: 6vh 6vw;
-    gap: 4%;
-    min-width: 250px;
-  }
-
-  .display {
-    flex-grow: 2;
-  }
-
-  .buttons {
-    flex-grow: 1;
-  }
-}
-
-@media (max-height: 600px) and (orientation:landscape) {
-  .container {
-    height: 100vh;
-    min-height: 100px;
-  }
-
-  .calculator {
-    height: 100vh;
-    width: 100vw;
-    padding: 5vh 5vw;
-    gap: 3%;
-  }
-
-  .display {
-    flex: 2;
-  }
-
-  .buttons {
-    flex: 5;
-    padding: 1% 5%;
-    grid-gap: 4% 4%;
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 601px) and (min-height: 601px){
-  .calculator {
-    box-shadow: 5px 20px 50px rgba(5,5,20,0.7);
-    border-radius: 8%;
-    min-width: 320px;
-    height: 80%;
-    max-height: 700px;
-    aspect-ratio: 0.7;
-    gap: 20px;
-    padding: 35px;
-  }
-
-  .buttons {
-    flex: 3;
-  }
 }
