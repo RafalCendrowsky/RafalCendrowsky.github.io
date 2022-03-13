@@ -1,4 +1,5 @@
 function evalFunction(equationArr) {
+    if (equationArr.length < 3) return equationArr[0];
     let a = equationArr[0];
     let b = equationArr[2];
     switch(equationArr[1]) {
@@ -41,7 +42,7 @@ document.querySelectorAll("button[data-type=\"oprt\"]").forEach(elem => {
         if(equationArr.length >= 3) {
             equationArr = [evalFunction(equationArr)];
         }
-        numberBuffer = "";
+        numberBuffer = "0";
         hasDot = false;
         equationArr.push(e.target.textContent);
         equationArr.push(numberBuffer);
@@ -51,11 +52,12 @@ document.querySelectorAll("button[data-type=\"oprt\"]").forEach(elem => {
 });
 
 document.querySelector("#equals").addEventListener("click", e => {
-    equationArr[equationArr.length - 1] = parseFloat(numberBuffer);
-    numberBuffer = "";
-    equationArr = [evalFunction(equationArr)];
-    equationArr.concat(numberBuffer);
-    hasDot = false;
+    if (numberBuffer != "") {
+        equationArr[equationArr.length - 1] = parseFloat(numberBuffer);
+        numberBuffer = "";
+    }
+    equationArr[0] = evalFunction(equationArr);
+    hasDot = equationArr[0].toString().includes(".");
     updateUpper();
     updateLower(equationArr[0]);
 });
@@ -71,6 +73,7 @@ document.querySelector("#all-clear").addEventListener("click", e => {
 document.querySelector("#clear").addEventListener("click", e => {
     if (numberBuffer.charAt(numberBuffer.length - 1) == ".") hasDot = false;
     numberBuffer = numberBuffer.substring(0, numberBuffer.length - 1);
+    if (numberBuffer.length == 0) numberBuffer = "0";
     equationArr[equationArr.length - 1] = numberBuffer;
     updateLower(numberBuffer);
 });
